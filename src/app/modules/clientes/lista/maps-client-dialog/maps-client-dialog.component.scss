@@ -1,0 +1,191 @@
+// 🗺️ Estilos para el Modal de Captura de Dirección desde Mapa
+
+.maps-dialog {
+  display: flex;
+  flex-direction: column;
+  width: 90vw;
+  max-width: 900px;
+  height: 80vh;
+  max-height: 700px;
+}
+
+// ===== HEADER =====
+.dialog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  border-bottom: 1px solid #e0e0e0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+
+  .header-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    .header-icon {
+      font-size: 28px;
+      width: 28px;
+      height: 28px;
+    }
+
+    .header-title {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 500;
+    }
+  }
+
+  .close-button {
+    color: white;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+  }
+}
+
+// ===== INSTRUCCIONES =====
+.instructions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 24px;
+  background-color: #e3f2fd;
+  border-left: 4px solid #2196f3;
+
+  .info-icon {
+    color: #2196f3;
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: #1565c0;
+    line-height: 1.5;
+  }
+}
+
+// ===== MAPA =====
+.map-container {
+  flex: 1;
+  width: 100%;
+  min-height: 400px;
+  background-color: #e0e0e0;
+}
+
+// ===== FOOTER =====
+.dialog-footer {
+  padding: 16px 24px;
+  border-top: 1px solid #e0e0e0;
+  background-color: #fafafa;
+
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .cancel-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #666;
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .capture-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 24px;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transform: translateY(-1px);
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+// ===== RESPONSIVE =====
+@media (max-width: 768px) {
+  .maps-dialog {
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw;
+    max-height: 100vh;
+  }
+
+  .dialog-header {
+    padding: 16px 20px;
+
+    .header-content {
+      .header-title {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .instructions {
+    padding: 12px 20px;
+
+    p {
+      font-size: 13px;
+    }
+  }
+
+  .dialog-footer {
+    padding: 12px 20px;
+
+    .button-group {
+      flex-direction: column;
+      gap: 8px;
+
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

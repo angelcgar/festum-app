@@ -1,0 +1,40 @@
+<!-- 🗺️ Modal para Capturar Dirección desde Mapa -->
+<div class="maps-dialog">
+
+  <!-- Header del Modal -->
+  <div class="dialog-header">
+    <div class="header-content">
+      <mat-icon class="header-icon">map</mat-icon>
+      <h2 class="header-title">Capturar Dirección desde Mapa</h2>
+    </div>
+    <button mat-icon-button (click)="cancelar()" class="close-button" matTooltip="Cerrar">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- Instrucciones -->
+  <div class="instructions">
+    <mat-icon class="info-icon">info</mat-icon>
+    <p>Haz clic en el mapa para colocar un pin en la ubicación deseada. Puedes mover el pin arrastrándolo.</p>
+  </div>
+
+  <!-- Contenedor del Mapa -->
+  <div class="map-container" #mapContainer></div>
+
+  <!-- Footer con botones de acción -->
+  <div class="dialog-footer">
+    <div class="button-group">
+      <button mat-button (click)="cancelar()" class="cancel-button" [disabled]="capturando">
+        <mat-icon>cancel</mat-icon>
+        Cancelar
+      </button>
+
+      <button mat-raised-button color="primary" (click)="capturarDireccion()" class="capture-button"
+        [disabled]="!pinColocado || capturando">
+        <mat-icon>{{ capturando ? 'hourglass_empty' : 'location_on' }}</mat-icon>
+        {{ capturando ? 'Capturando...' : 'Capturar dirección' }}
+      </button>
+    </div>
+  </div>
+
+</div>
