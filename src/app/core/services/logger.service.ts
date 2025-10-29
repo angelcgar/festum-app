@@ -21,4 +21,11 @@ export class LoggerService {
     // pero si quieres ocultarlos, mueve el if dentro.
     console.error(...msg);
   }
+
+  debugWithTrace(...msg: any[]) {
+    if (!this.enabled) return;
+    console.log(...msg);
+    console.trace();
+  }
+
 }

@@ -212,7 +212,7 @@ export class ClienteDialogComponent implements OnInit {
 	}
 
 	get esFormularioValido(): boolean {
-		this.logger.log({
+		this.logger.debugWithTrace({
 			errorForm: this.clienteForm.errors,
 			esValido: this.clienteForm.valid,
 			valoresForm: this.clienteForm.value,
