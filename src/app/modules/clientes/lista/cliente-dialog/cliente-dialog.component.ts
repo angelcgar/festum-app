@@ -9,6 +9,7 @@ import {
 	MatDialogRef,
 	MAT_DIALOG_DATA,
 	MatDialogModule,
+	MatDialog,
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -20,6 +21,10 @@ import { CommonModule } from '@angular/common';
 
 import { Cliente } from '../cliente.model';
 import { LoggerService } from '../../../../core/services/logger.service';
+import {
+	MapsClientDialogComponent,
+	CapturedAddress,
+} from '../maps-client-dialog/maps-client-dialog.component';
 
 export interface ClienteDialogData {
 	cliente?: Cliente;
@@ -59,6 +64,7 @@ export class ClienteDialogComponent implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		public dialogRef: MatDialogRef<ClienteDialogComponent>,
+		private dialog: MatDialog,
 	) {
 		this.data = inject(MAT_DIALOG_DATA);
 		this.modo = this.data.modo;
@@ -143,6 +149,44 @@ export class ClienteDialogComponent implements OnInit {
 	 */
 	cancelar(): void {
 		this.dialogRef.close();
+	}
+
+	/**
+	 * 🗺️ Abrir diálogo de mapa para capturar dirección
+	 */
+	abrirMapaDialog(): void {
+		const dialogRef = this.dialog.open(MapsClientDialogComponent, {
+			width: '90vw',
+			maxWidth: '900px',
+			height: '80vh',
+			maxHeight: '700px',
+			disableClose: false,
+			panelClass: 'maps-dialog-container',
+		});
+
+		dialogRef
+			.afterClosed()
+			.subscribe((address: CapturedAddress | undefined) => {
+				if (address) {
+					// Actualizar el formulario con la dirección capturada
+					this.clienteForm.patchValue({
+						direccion: {
+							fullAddress: address.fullAddress,
+							street: address.street,
+							number: address.number,
+							neighborhood: address.neighborhood,
+							city: address.city,
+							state: address.state,
+							country: address.country,
+							postalCode: address.postalCode,
+							lat: address.lat,
+							lng: address.lng,
+						},
+					});
+
+					this.logger.log('✅ Dirección capturada desde mapa:', address);
+				}
+			});
 	}
 
 	/**
