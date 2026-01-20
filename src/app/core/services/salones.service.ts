@@ -986,4 +986,20 @@ export class SalonesService {
 			}),
 		);
 	}
+
+	/**
+	 * 🎨 Obtener plantillas de salones como PlanoTemplate
+	 *
+	 * Este método devuelve todas las plantillas de los salones en formato PlanoTemplate
+	 * para ser utilizadas en el servicio de plantillas y en nuevo-evento.
+	 *
+	 * @returns Observable<PlanoTemplate[]> - Array de plantillas de planos
+	 */
+	// getPlantillasSalones(): Observable<PlanoTemplate[]> {
+	// 	return of(
+	// 		this.mockSalones
+	// 			.filter((salon) => salon.planoTemplate !== undefined)
+	// 			.map((salon) => salon.planoTemplate as PlanoTemplate),
+	// 	).pipe(delay(100));
+	// }
 }
